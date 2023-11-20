@@ -4,10 +4,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {SharedMaterialModule} from "./shared-material.module";
+import {SomethingComponent} from "./app/something/something.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SomethingComponent
   ],
   imports: [
     BrowserModule,
