@@ -2,6 +2,8 @@
 @use "@angular/material" as mat;
 @use "sass:map" as map;
 
+@use "app/banner/banner.component.scss-theme" as app-banner;
+
 @include mat.core();
 
 $my-primary: mat.define-palette(mat.$cyan-palette, 500, 200, 800);
@@ -30,9 +32,8 @@ $my-theme: map.deep-merge(
   )
 );
 
-@debug $my-theme;
-
 @include mat.all-component-themes($my-theme);
+@include app-banner.theme($my-theme);
 
 html,
 body {
