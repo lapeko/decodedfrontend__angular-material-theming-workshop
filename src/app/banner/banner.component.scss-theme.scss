@@ -1,8 +1,18 @@
 @use "@angular/material" as mat;
 @use "sass:map" as map;
 
+@mixin typography($typography-config) {
+  h3.heading {
+    @include mat.typography-level($typography-config, title);
+  }
+  .message {
+    @include mat.typography-level($typography-config, body-1);
+  }
+}
+
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
+  $typography-config: mat.get-typography-config($theme);
 
   $background-palette: map.get($color-config, background);
   $foreground-palette: map.get($color-config, foreground);
@@ -29,5 +39,9 @@
       background: mat.get-color-from-palette($error-palette, 500);
       color: mat.get-color-from-palette($error-palette, 500-contrast);
     }
+  }
+
+  @if $typography-config != null {
+    @include typography($typography-config);
   }
 }

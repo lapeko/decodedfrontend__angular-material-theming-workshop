@@ -4,7 +4,12 @@
 
 @use "app/banner/banner.component.scss-theme" as app-banner;
 
-@include mat.core();
+$my-typography: mat.define-typography-config(
+  $font-family: "'Open Sans', sans-serif",
+  $display-4: mat.define-typography-level(95px, 95px, 300, $letter-spacing: -0.5em)
+);
+
+@include mat.core(); // it is the same like using in define-light-theme
 
 $my-primary: mat.define-palette(mat.$cyan-palette, 500, 200, 800);
 $my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
@@ -17,7 +22,8 @@ $my-theme: mat.define-light-theme(
       primary: $my-primary,
       accent: $my-accent,
     ),
-  )
+    typography: $my-typography,
+  ),
 );
 
 $my-theme: map.deep-merge(
@@ -33,6 +39,7 @@ $my-theme: map.deep-merge(
 );
 
 @include mat.all-component-themes($my-theme);
+
 @include app-banner.theme($my-theme);
 
 html,
