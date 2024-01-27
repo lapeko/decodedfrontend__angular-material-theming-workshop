@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, HostBinding, Input} from "@angular/core";
 
 @Component({
   selector: 'app-banner',
@@ -11,4 +11,13 @@ export class BannerComponent {
 
   @Input()
   message: string = "";
+
+  @Input()
+  type: "info" | "success" | "error" | "none" = "none";
+
+  @HostBinding("class")
+  get hostClass() {
+    if (this.type === "none") return "";
+    return `app-banner-${this.type}`;
+  }
 }

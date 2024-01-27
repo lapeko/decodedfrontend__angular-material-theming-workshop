@@ -3,11 +3,31 @@
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
+
+  $background-palette: map.get($color-config, background);
+  $foreground-palette: map.get($color-config, foreground);
   $info-palette: map.get($color-config, info);
+  $success-palette: map.get($color-config, success);
+  $error-palette: map.get($color-config, warn);
 
   app-banner {
     display: block;
-    background: mat.get-color-from-palette($info-palette, 500);
-    color: mat.get-color-from-palette($info-palette, 500-contrast);
+    background: mat.get-color-from-palette($background-palette, card);
+    color: mat.get-color-from-palette($foreground-palette, base);
+
+    &.app-banner-info {
+      background: mat.get-color-from-palette($info-palette, 500);
+      color: mat.get-color-from-palette($info-palette, 500-contrast);
+    }
+
+    &.app-banner-success {
+      background: mat.get-color-from-palette($success-palette, 500);
+      color: mat.get-color-from-palette($success-palette, 500-contrast);
+    }
+
+    &.app-banner-error {
+      background: mat.get-color-from-palette($error-palette, 500);
+      color: mat.get-color-from-palette($error-palette, 500-contrast);
+    }
   }
 }
