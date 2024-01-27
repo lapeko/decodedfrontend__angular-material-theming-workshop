@@ -1,0 +1,13 @@
+@use "@angular/material" as mat;
+@use "sass:map" as map;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $info-palette: map.get($color-config, info);
+
+  app-banner {
+    display: block;
+    background: mat.get-color-from-palette($info-palette, 500);
+    color: mat.get-color-from-palette($info-palette, 500-contrast);
+  }
+}
