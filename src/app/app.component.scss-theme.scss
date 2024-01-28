@@ -1,0 +1,13 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $background-palette: map.get($theme, background);
+
+  app-root {
+    display: block;
+    background-color: mat.get-color-from-palette($background-palette, background);
+    min-height: 100vh;
+  }
+}

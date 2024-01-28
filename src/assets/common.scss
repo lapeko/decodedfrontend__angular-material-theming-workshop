@@ -1,0 +1,25 @@
+@use "@angular/material" as mat;
+@use "sass:map" as map;
+
+
+$app-info-palette: mat.define-palette(mat.$blue-palette, 500, 200, 800);
+$app-success-palette: mat.define-palette(mat.$green-palette, 500, 200, 800);
+
+$typography: mat.define-typography-config(
+  $font-family: "'Open Sans', sans-serif",
+  $display-4: mat.define-typography-level(95px, 95px, 300, $letter-spacing: -0.5em)
+);
+
+@function apply-extra-colors($theme) {
+  @return map.deep-merge(
+      $theme,
+      (
+        info: $app-info-palette,
+        success: $app-success-palette,
+        color: (
+          info: $app-info-palette,
+          success: $app-success-palette,
+        ),
+      )
+  );
+}

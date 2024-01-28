@@ -1,0 +1,17 @@
+@use "@angular/material" as mat;
+@use "common";
+
+$primary-palette: mat.define-palette(mat.$cyan-palette, 600, 300, 900);
+$accent-palette: mat.define-palette(mat.$pink-palette, A400, A200, A700);
+
+$theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $primary-palette,
+        accent: $accent-palette,
+      ),
+      typography: common.$typography,
+    ),
+);
+
+$theme: common.apply-extra-colors($theme);

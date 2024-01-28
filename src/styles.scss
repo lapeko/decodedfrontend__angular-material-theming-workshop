@@ -1,46 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @use "@angular/material" as mat;
-@use "sass:map" as map;
+@use "assets/light-theme";
+@use "assets/dark-theme";
 
+@use "app/app.component.scss-theme" as root;
 @use "app/banner/banner.component.scss-theme" as app-banner;
 
-$my-typography: mat.define-typography-config(
-  $font-family: "'Open Sans', sans-serif",
-  $display-4: mat.define-typography-level(95px, 95px, 300, $letter-spacing: -0.5em)
-);
-
-@include mat.core(); // it is the same like using in define-light-theme
-
-$my-primary: mat.define-palette(mat.$cyan-palette, 500, 200, 800);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-info: mat.define-palette(mat.$blue-palette, 500, 200, 800);
-$my-success: mat.define-palette(mat.$green-palette, 500, 200, 800);
-
-$my-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $my-primary,
-      accent: $my-accent,
-    ),
-    typography: $my-typography,
-  ),
-);
-
-$my-theme: map.deep-merge(
-  $my-theme,
-  (
-    info: $my-info,
-    success: $my-success,
-    color: (
-      info: $my-info,
-      success: $my-success,
-    ),
-  )
-);
-
-@include mat.all-component-themes($my-theme);
-
-@include app-banner.theme($my-theme);
+@mixin create-theme($theme) {
+  @include mat.all-component-themes($theme);
+  @include root.theme($theme);
+  @include app-banner.theme($theme);
+}
 
 html,
 body {
@@ -50,4 +20,13 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@include mat.core();
+
+.app-light-theme {
+  @include create-theme(light-theme.$theme);
+}
+.app-dark-theme {
+  @include create-theme(dark-theme.$theme);
 }
