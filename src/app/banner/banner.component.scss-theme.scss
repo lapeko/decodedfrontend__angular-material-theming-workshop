@@ -1,9 +1,26 @@
 @use "@angular/material" as mat;
 @use "sass:map" as map;
 
+$banner-density-config: (
+  height: (
+    default: 120px,
+    maximum: 150px,
+    minimum: 90px,
+  )
+) !default;
+
+@mixin density($density) {
+  $height: map.get($banner-density-config, height, $density);
+
+  app-banner {
+    min-height: $height;
+  }
+}
+
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   $typography-config: mat.get-typography-config($theme);
+  $density: mat.get-density-config($theme);
 
   $background-palette: map.get($color-config, background);
   $foreground-palette: map.get($color-config, foreground);
@@ -34,6 +51,10 @@
 
   @if $typography-config != null {
     @include typography($typography-config);
+  }
+
+  @if $density != null {
+    @include density($density);
   }
 }
 

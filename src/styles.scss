@@ -2,7 +2,8 @@
 @use "@angular/material" as mat;
 @use "styles/common";
 
-@include mat.core(common.$typography);
+@include mat.core();
+@include mat.typography-hierarchy(common.$typography, "body");
 
 html,
 body {
