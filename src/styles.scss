@@ -4,6 +4,11 @@
 
 @include mat.core();
 @include mat.typography-hierarchy(common.$typography, "body");
+@include mat.strong-focus-indicators((
+  border-style: dotted,
+  border-width: 4px,
+  border-radius: 4px,
+));
 
 body {
   margin: 0;

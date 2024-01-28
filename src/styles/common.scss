@@ -33,6 +33,13 @@ $typography: mat.define-typography-config(
   @include mat.toolbar-theme($theme);
   @include mat.card-theme($theme);
 
+  body {
+    @include mat.strong-focus-indicators-theme($theme);
+  }
+  .mat-toolbar.mat-primary {
+    @include mat.strong-focus-indicators-theme(white);
+  }
+
   @include root.theme($theme);
   @include app-banner.theme($theme);
 }
