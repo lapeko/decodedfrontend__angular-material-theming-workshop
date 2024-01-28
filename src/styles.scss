@@ -1,16 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @use "@angular/material" as mat;
-@use "assets/light-theme";
-@use "assets/dark-theme";
+@use "styles/common";
 
-@use "app/app.component.scss-theme" as root;
-@use "app/banner/banner.component.scss-theme" as app-banner;
-
-@mixin create-theme($theme) {
-  @include mat.all-component-themes($theme);
-  @include root.theme($theme);
-  @include app-banner.theme($theme);
-}
+@include mat.core(common.$typography);
 
 html,
 body {
@@ -22,11 +14,3 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-@include mat.core();
-
-.app-light-theme {
-  @include create-theme(light-theme.$theme);
-}
-.app-dark-theme {
-  @include create-theme(dark-theme.$theme);
-}

@@ -1,6 +1,8 @@
-@use "@angular/material" as mat;
+@use "../../node_modules/@angular/material/index" as mat;
 @use "sass:map" as map;
 
+@use "src/app/app.component.scss-theme" as root;
+@use "src/app/banner/banner.component.scss-theme" as app-banner;
 
 $app-info-palette: mat.define-palette(mat.$blue-palette, 500, 200, 800);
 $app-success-palette: mat.define-palette(mat.$green-palette, 500, 200, 800);
@@ -22,4 +24,10 @@ $typography: mat.define-typography-config(
         ),
       )
   );
+}
+
+@mixin create-theme($theme) {
+  @include mat.all-component-themes($theme);
+  @include root.theme($theme);
+  @include app-banner.theme($theme);
 }
