@@ -27,7 +27,13 @@ $typography: mat.define-typography-config(
 }
 
 @mixin create-theme($theme) {
-  @include mat.all-component-themes($theme);
+  @include mat.core-theme($theme);
+  @include mat.button-theme($theme);
+  @include mat.form-field-theme($theme);
+  @include mat.select-theme($theme);
+  @include mat.toolbar-theme($theme);
+  @include mat.card-theme($theme);
+
   @include root.theme($theme);
   @include app-banner.theme($theme);
 }
