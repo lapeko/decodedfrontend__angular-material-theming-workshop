@@ -1,4 +1,4 @@
-@use "../../node_modules/@angular/material/index" as mat;
+@use "@angular/material" as mat;
 @use "sass:map" as map;
 
 @use "src/app/app.component.scss-theme" as root;
@@ -9,7 +9,6 @@ $app-success-palette: mat.define-palette(mat.$green-palette, 500, 200, 800);
 
 $typography: mat.define-typography-config(
   $font-family: "'Open Sans', sans-serif",
-  $display-4: mat.define-typography-level(95px, 95px, 300, $letter-spacing: -0.5em)
 );
 
 @function apply-extra-colors($theme) {

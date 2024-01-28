@@ -48,7 +48,7 @@ $banner-density-config: (
       color: mat.get-contrast-color-from-palette($error-palette, 500-contrast);
     }
 
-    @include mat.overridable-elevation(2, mat.get-color-from-palette($error-palette, 500), 0.3);
+    @include mat.overridable-elevation(2, mat.get-color-from-palette($error-palette, 500));
   }
 
   @if $typography-config != null {

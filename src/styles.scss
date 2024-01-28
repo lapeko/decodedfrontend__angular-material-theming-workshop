@@ -5,13 +5,6 @@
 @include mat.core();
 @include mat.typography-hierarchy(common.$typography, "body");
 
-html,
-body {
-  height: 100%;
-}
-
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
