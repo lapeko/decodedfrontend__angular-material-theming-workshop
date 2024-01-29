@@ -10,13 +10,12 @@
     background-color: mat.get-color-from-palette($background-palette, background);
     min-height: 100vh;
 
-    $image-src: url("../assets/icon-light.png");
-    @if map.get($theme, is-dark) == false {
-      $image-src: url("../assets/icon-dark.png");
-    }
-
     .main-logo {
-      background-image: $image-src;
+      @if map.get($theme, is-dark) {
+        background-image: url("../assets/icon-light.png");
+      } @else {
+        background-image: url("../assets/icon-dark.png");
+      }
     }
   }
 }
