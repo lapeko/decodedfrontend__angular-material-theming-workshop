@@ -1,4 +1,5 @@
 import {Component, HostBinding, Input} from "@angular/core";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-banner',
@@ -13,11 +14,10 @@ export class BannerComponent {
   message: string = "";
 
   @Input()
-  type: "info" | "success" | "error" | "none" = "none";
+  type: ThemePalette = "primary";
 
   @HostBinding("class")
   get hostClass() {
-    if (this.type === "none") return "";
     return `app-banner-${this.type}`;
   }
 }

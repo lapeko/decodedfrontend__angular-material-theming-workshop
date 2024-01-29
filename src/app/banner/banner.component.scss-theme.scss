@@ -34,17 +34,17 @@ $banner-density-config: (
     background: mat.get-color-from-palette($background-palette, card);
     color: mat.get-color-from-palette($foreground-palette, base);
 
-    &.app-banner-info {
+    &.app-banner-primary {
       background: mat.get-color-from-palette($info-palette, 500);
       color: mat.get-contrast-color-from-palette($info-palette, 500);
     }
 
-    &.app-banner-success {
+    &.app-banner-accent {
       background: mat.get-color-from-palette($success-palette, 500);
       color: mat.get-contrast-color-from-palette($success-palette, 500-contrast);
     }
 
-    &.app-banner-error {
+    &.app-banner-warn {
       background: mat.get-color-from-palette($error-palette, 500);
       color: mat.get-contrast-color-from-palette($error-palette, 500-contrast);
     }

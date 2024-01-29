@@ -1,6 +1,6 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
-import { DOCUMENT } from "@angular/common";
-import { MatSelectChange } from "@angular/material/select";
+import {Component, Inject} from '@angular/core';
+import {DOCUMENT} from "@angular/common";
+import {ThemeService} from "./services/theme.service";
 
 @Component({
   selector: 'app-root',
@@ -12,15 +12,7 @@ export class AppComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2,
+    public themeService: ThemeService,
   ) {
-  }
-
-  onThemeChange({source}: MatSelectChange) {
-    this.renderer.setAttribute(
-      this.themeAnchor,
-      "href",
-      source.value === "light" ? "light-theme.css" : "dark-theme.css",
-    );
   }
 }
