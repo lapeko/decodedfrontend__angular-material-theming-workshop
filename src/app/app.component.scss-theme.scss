@@ -17,5 +17,9 @@
         background-image: url("../assets/icon-dark.png");
       }
     }
+
+    mat-card-content, mat-card-title {
+      color: map.get($theme, foreground, text);
+    }
   }
 }

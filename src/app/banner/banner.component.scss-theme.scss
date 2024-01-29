@@ -62,7 +62,7 @@ $banner-density-config: (
 
 @mixin typography($typography-config) {
   h3.heading {
-    @include mat.typography-level($typography-config, title);
+    @include mat.typography-level($typography-config, headline-6);
   }
   .message {
     @include mat.typography-level($typography-config, body-1);
