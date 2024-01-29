@@ -1,0 +1,25 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $background-palette: map.get($theme, background);
+
+  app-root {
+    display: block;
+    background-color: mat.get-color-from-palette($background-palette, background);
+    min-height: 100vh;
+
+    .main-logo {
+      @if map.get($theme, is-dark) {
+        background-image: url("../assets/icon-light.png");
+      } @else {
+        background-image: url("../assets/icon-dark.png");
+      }
+    }
+
+    mat-card-content, mat-card-title {
+      color: map.get($theme, foreground, text);
+    }
+  }
+}

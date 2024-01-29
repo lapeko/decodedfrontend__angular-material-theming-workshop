@@ -1,0 +1,34 @@
+@use "@angular/material" as mat;
+@use "sass:map" as map;
+
+@use "src/app/app.component.scss-theme" as root;
+@use "src/app/banner/banner.component.scss-theme" as app-banner;
+
+$typography: mat.define-typography-config(
+  $font-family: "'Open Sans', sans-serif",
+);
+
+@function apply-extra-colors($theme, $color-config) {
+  @return map.deep-merge($theme, $color-config);
+}
+
+@mixin create-theme($theme) {
+  @include mat.core-theme($theme);
+  @include mat.select-theme($theme);
+  @include mat.toolbar-theme($theme);
+  @include mat.button-theme($theme);
+  @include mat.fab-theme($theme);
+  @include mat.icon-button-theme($theme);
+  @include mat.card-theme($theme);
+  @include mat.form-field-theme($theme);
+
+  body {
+    @include mat.strong-focus-indicators-theme($theme);
+  }
+  .mat-toolbar.mat-primary {
+    @include mat.strong-focus-indicators-theme(white);
+  }
+
+  @include root.theme($theme);
+  @include app-banner.theme($theme);
+}

@@ -1,46 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @use "@angular/material" as mat;
-@use "sass:map" as map;
-
-@use "app/banner/banner.component.scss-theme" as app-banner;
+@use "styles/common";
 
 @include mat.core();
-
-$my-primary: mat.define-palette(mat.$cyan-palette, 500, 200, 800);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-info: mat.define-palette(mat.$blue-palette, 500, 200, 800);
-$my-success: mat.define-palette(mat.$green-palette, 500, 200, 800);
-
-$my-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $my-primary,
-      accent: $my-accent,
-    ),
-  )
-);
-
-$my-theme: map.deep-merge(
-  $my-theme,
-  (
-    info: $my-info,
-    success: $my-success,
-    color: (
-      info: $my-info,
-      success: $my-success,
-    ),
-  )
-);
-
-@include mat.all-component-themes($my-theme);
-@include app-banner.theme($my-theme);
-
-html,
-body {
-  height: 100%;
-}
+@include mat.typography-hierarchy(common.$typography, "body");
+@include mat.strong-focus-indicators((
+  border-style: dotted,
+  border-width: 4px,
+  border-radius: 4px,
+));
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

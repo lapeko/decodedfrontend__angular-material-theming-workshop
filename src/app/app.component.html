@@ -1,4 +1,5 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
+  <button mat-icon-button class="main-logo"></button>
   <button mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
@@ -10,15 +11,17 @@
 </mat-toolbar>
 <main class="content">
   <app-banner
+    class="mat-elevation-z12"
+    type="success"
     heading="Some heading"
     message="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam blanditiis doloremque doloribus ducimus, enim laboriosam perferendis porro provident suscipit."
   ></app-banner>
   <section class="sort-area">
     <mat-form-field class="drop-down">
-      <mat-label>Choose an option</mat-label>
-      <mat-select>
-        <mat-option value="option1">Ask</mat-option>
-        <mat-option value="option3">Des</mat-option>
+      <mat-label>Choose theme</mat-label>
+      <mat-select value="dark" (selectionChange)="onThemeChange($event)">
+        <mat-option value="dark">Dark</mat-option>
+        <mat-option value="light">Light</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-raised-button color="accent">Sort</button>
