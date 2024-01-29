@@ -1,20 +1,44 @@
-@use "../../node_modules/@angular/material/index" as mat;
+@use "@angular/material" as mat;
 @use "common";
+@use "sass:map";
 
 $primary-palette: mat.define-palette(mat.$cyan-palette, 500, 200, 800);
 $accent-palette: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$info-palette: mat.define-palette(mat.$blue-palette, 600, 300, 900);
+$success-palette: mat.define-palette(mat.$green-palette, 600, 300, 900);
 
-$theme: mat.define-light-theme(
-    (
-      color: (
-        primary: $primary-palette,
-        accent: $accent-palette,
-      ),
-      typography: common.$typography,
-      density: minimum,
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+  ),
+  typography: common.$typography,
+  density: minimum,
+));
+
+$color-config: (
+  info: $info-palette,
+  success: $success-palette,
+  foreground: (
+    text: blue,
+    secondary-text: blue,
+  ),
+  background: (
+    background: map.get(mat.$blue-palette, 50),
+  ),
+  color: (
+    info: $info-palette,
+    success: $success-palette,
+    foreground: (
+      text: blue,
+      secondary-text: blue,
     ),
+    background: (
+      background: map.get(mat.$blue-palette, 50),
+    ),
+  ),
 );
 
-$theme: common.apply-extra-colors($theme);
+$theme: common.apply-extra-colors($theme, $color-config);
 
 @include common.create-theme($theme);

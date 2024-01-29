@@ -4,25 +4,12 @@
 @use "src/app/app.component.scss-theme" as root;
 @use "src/app/banner/banner.component.scss-theme" as app-banner;
 
-$app-info-palette: mat.define-palette(mat.$blue-palette, 500, 200, 800);
-$app-success-palette: mat.define-palette(mat.$green-palette, 500, 200, 800);
-
 $typography: mat.define-typography-config(
   $font-family: "'Open Sans', sans-serif",
 );
 
-@function apply-extra-colors($theme) {
-  @return map.deep-merge(
-      $theme,
-      (
-        info: $app-info-palette,
-        success: $app-success-palette,
-        color: (
-          info: $app-info-palette,
-          success: $app-success-palette,
-        ),
-      ),
-  );
+@function apply-extra-colors($theme, $color-config) {
+  @return map.deep-merge($theme, $color-config);
 }
 
 @mixin create-theme($theme) {
