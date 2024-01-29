@@ -24,7 +24,7 @@ $color-config: (
     secondary-text: red,
   ),
   background: (
-    background: mat.get-color-from-palette(mat.$blue-palette, 900),
+    background: mat.get-color-from-palette(mat.$blue-grey-palette, 900),
   ),
   color: (
     info: $info-palette,
