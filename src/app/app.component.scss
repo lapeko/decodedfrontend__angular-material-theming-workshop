@@ -26,3 +26,8 @@
   background-position: center;
   background-size: contain;
 }
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
