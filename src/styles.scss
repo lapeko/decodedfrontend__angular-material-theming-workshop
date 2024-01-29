@@ -2,7 +2,7 @@
 @use "@angular/material" as mat;
 @use "styles/common";
 
-@include mat.core();
+@include mat.core(common.$typography);
 @include mat.typography-hierarchy(common.$typography, "body");
 @include mat.strong-focus-indicators((
   border-style: dotted,
