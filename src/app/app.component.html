@@ -13,10 +13,18 @@
   <main class="content">
     <app-banner
       class="mat-elevation-z12"
-      type="accent"
+      type="primary"
       heading="Some heading"
       message="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam blanditiis doloremque doloribus ducimus, enim laboriosam perferendis porro provident suscipit."
     ></app-banner>
+    <div class="app-second-theme">
+      <app-banner
+        class="mat-elevation-z12"
+        type="primary"
+        heading="Some heading"
+        message="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam blanditiis doloremque doloribus ducimus, enim laboriosam perferendis porro provident suscipit."
+      ></app-banner>
+    </div>
     <section class="sort-area">
       <mat-form-field class="drop-down">
         <mat-label>Choose theme</mat-label>
@@ -25,7 +33,9 @@
           <mat-option value="light">Light</mat-option>
         </mat-select>
       </mat-form-field>
-      <button *ngIf="localStorageTheme" mat-raised-button color="accent" (click)="themeService.loadThemeAutomatically()">Use automatic theme</button>
+      <div class="app-second-theme">
+        <button *ngIf="localStorageTheme" mat-raised-button color="primary" (click)="themeService.loadThemeAutomatically()">Use automatic theme</button>
+      </div>
     </section>
     <section class="card-area">
       <mat-card class="card">

@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @use "@angular/material" as mat;
-@use "styles/common";
+@use "styles/utils";
 
 @include mat.core();
-@include mat.typography-hierarchy(common.$typography, "body");
+@include mat.typography-hierarchy(utils.$typography, "body");
 @include mat.strong-focus-indicators((
   border-style: dotted,
   border-width: 4px,

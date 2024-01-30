@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-@use "common";
+@use "utils";
 @use "sass:map";
 
 $primary-palette: mat.define-palette(mat.$cyan-palette, 600, 300, 900);
@@ -12,7 +12,7 @@ $theme: mat.define-dark-theme((
     primary: $primary-palette,
     accent: $accent-palette,
   ),
-  typography: common.$typography,
+  typography: utils.$typography,
   density: default,
 ));
 
@@ -39,6 +39,6 @@ $color-config: (
   ),
 );
 
-$theme: common.apply-extra-colors($theme, $color-config);
+$theme: utils.apply-extra-colors($theme, $color-config);
 
-@include common.create-theme($theme);
+@include utils.create-theme($theme);

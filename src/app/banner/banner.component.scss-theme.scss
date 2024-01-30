@@ -10,15 +10,32 @@ $banner-density-config: (
   )
 ) !default;
 
-@mixin apply-banner-color($color-config, $color-name) {
-  $palette: map.get($color-config, $color-name);
-  @if $color-name == success {
-    @debug mat.get-color-from-palette($palette);
+@mixin color($theme) {
+  $colors: primary, accent, warn, success;
+  $color-config: mat.get-color-config($theme);
+  $background-palette: map.get($color-config, background);
+  $foreground-palette: map.get($color-config, foreground);
+  $error-palette: map.get($color-config, warn);
+
+  app-banner {
+    display: block;
+    background: mat.get-color-from-palette($background-palette, card);
+    color: mat.get-color-from-palette($foreground-palette, base);
+
+    @each $color-name in $colors {
+      $palette: map.get($color-config, $color-name);
+      @if $color-name == primary {
+        @debug mat.get-color-from-palette($palette, default);
+      }
+      &.app-banner-#{$color-name} {
+        background: mat.get-color-from-palette($palette, default); // default, lighter, darker
+        color: mat.get-contrast-color-from-palette($palette, default);
+      }
+    }
+
+    @include mat.overridable-elevation(2, mat.get-color-from-palette($error-palette, 500));
   }
-  &.app-banner-#{$color-name} {
-    background: mat.get-color-from-palette($palette, default); // lighter, darker
-    color: mat.get-contrast-color-from-palette($palette, default);
-  }
+
 }
 
 @mixin density($density-scale) {
@@ -34,23 +51,7 @@ $banner-density-config: (
   $typography-config: mat.get-typography-config($theme);
   $density-config: mat.get-density-config($theme);
 
-  $background-palette: map.get($color-config, background);
-  $foreground-palette: map.get($color-config, foreground);
-  $error-palette: map.get($color-config, warn);
-
-  app-banner {
-    display: block;
-    background: mat.get-color-from-palette($background-palette, card);
-    color: mat.get-color-from-palette($foreground-palette, base);
-
-
-    @include apply-banner-color($color-config, primary);
-    @include apply-banner-color($color-config, success);
-    @include apply-banner-color($color-config, warn);
-    @include apply-banner-color($color-config, accent);
-
-    @include mat.overridable-elevation(2, mat.get-color-from-palette($error-palette, 500));
-  }
+  @include color($color-config);
 
   @if $typography-config != null {
     @include typography($typography-config);

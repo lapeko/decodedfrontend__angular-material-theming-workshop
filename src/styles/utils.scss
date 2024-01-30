@@ -31,4 +31,15 @@ $typography: mat.define-typography-config(
 
   @include root.theme($theme);
   @include app-banner.theme($theme);
+
+  .app-second-theme {
+    $purple-sub-theme: apply-extra-colors($theme, (
+      color: (
+        primary: mat.define-palette(mat.$deep-purple-palette),
+      )
+    ));
+
+    @include mat.button-color($purple-sub-theme);
+    @include app-banner.color($purple-sub-theme);
+  }
 }
