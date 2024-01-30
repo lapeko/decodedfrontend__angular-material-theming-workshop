@@ -25,7 +25,7 @@
           <mat-option value="light">Light</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button color="accent">Sort</button>
+      <button *ngIf="localStorageTheme" mat-raised-button color="accent" (click)="themeService.loadThemeAutomatically()">Use automatic theme</button>
     </section>
     <section class="card-area">
       <mat-card class="card">

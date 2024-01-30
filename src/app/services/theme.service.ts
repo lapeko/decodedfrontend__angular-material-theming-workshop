@@ -34,11 +34,21 @@ export class ThemeService {
   );
 
   changeTheme(theme: ThemeName) {
+    localStorage.setItem("theme", theme);
     this.#userChangeThemeSubject$.next(theme);
   };
+
+  loadThemeAutomatically() {
+    localStorage.removeItem("theme");
+    this.#userChangeThemeSubject$.next(resolveTheme(this.#osThemePreference));
+  }
 }
 
-const resolveTheme = (media: MediaQueryList): ThemeName => media.matches ? "light" : "dark";
+const resolveTheme = (media: MediaQueryList): ThemeName => {
+  const localTheme = localStorage.getItem("theme");
+  if (localTheme) return localTheme as ThemeName;
+  return media.matches ? "light" : "dark";
+}
 
 const loadTheme = (theme: ThemeName): Observable<ThemeName> => {
   const existLink = document.head.querySelector<HTMLLinkElement>("link#app-theme");

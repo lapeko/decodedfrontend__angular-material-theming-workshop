@@ -31,6 +31,10 @@ export class AppComponent {
   constructor(public themeService: ThemeService) {
   }
 
+  get localStorageTheme(): ThemeName | null {
+    return localStorage.getItem('theme') as ThemeName
+  }
+
   changeTheme($event: ThemeName) {
     this.themeService.changeTheme($event)
   }
