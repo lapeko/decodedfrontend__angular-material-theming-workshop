@@ -10,6 +10,17 @@ $banner-density-config: (
   )
 ) !default;
 
+@mixin apply-banner-color($color-config, $color-name) {
+  $palette: map.get($color-config, $color-name);
+  @if $color-name == success {
+    @debug mat.get-color-from-palette($palette);
+  }
+  &.app-banner-#{$color-name} {
+    background: mat.get-color-from-palette($palette, default); // lighter, darker
+    color: mat.get-contrast-color-from-palette($palette, default);
+  }
+}
+
 @mixin density($density-scale) {
   $height: density.prop-value($banner-density-config, $density-scale, height);
 
@@ -25,8 +36,6 @@ $banner-density-config: (
 
   $background-palette: map.get($color-config, background);
   $foreground-palette: map.get($color-config, foreground);
-  $info-palette: map.get($color-config, info);
-  $success-palette: map.get($color-config, success);
   $error-palette: map.get($color-config, warn);
 
   app-banner {
@@ -34,20 +43,11 @@ $banner-density-config: (
     background: mat.get-color-from-palette($background-palette, card);
     color: mat.get-color-from-palette($foreground-palette, base);
 
-    &.app-banner-primary {
-      background: mat.get-color-from-palette($info-palette, 500);
-      color: mat.get-contrast-color-from-palette($info-palette, 500);
-    }
 
-    &.app-banner-accent {
-      background: mat.get-color-from-palette($success-palette, 500);
-      color: mat.get-contrast-color-from-palette($success-palette, 500-contrast);
-    }
-
-    &.app-banner-warn {
-      background: mat.get-color-from-palette($error-palette, 500);
-      color: mat.get-contrast-color-from-palette($error-palette, 500-contrast);
-    }
+    @include apply-banner-color($color-config, primary);
+    @include apply-banner-color($color-config, success);
+    @include apply-banner-color($color-config, warn);
+    @include apply-banner-color($color-config, accent);
 
     @include mat.overridable-elevation(2, mat.get-color-from-palette($error-palette, 500));
   }

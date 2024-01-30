@@ -15,7 +15,7 @@ export class BannerComponent {
   message: string = "";
 
   @Input()
-  type: ThemePalette = "primary";
+  type: ThemePalette | "success" = "primary";
 
   @HostBinding("class")
   get hostClass() {
