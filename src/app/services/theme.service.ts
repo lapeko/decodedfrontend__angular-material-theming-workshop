@@ -1,5 +1,15 @@
 import {Injectable} from "@angular/core";
-import {fromEvent, map, merge, shareReplay, startWith, Subject, tap} from "rxjs";
+import {
+  fromEvent,
+  map,
+  merge,
+  Observable,
+  of,
+  shareReplay,
+  startWith,
+  Subject,
+  switchMap,
+} from "rxjs";
 
 export type ThemeName = "light" | "dark";
 type ThemeFileName = `/${ThemeName}-theme.css`;
@@ -13,34 +23,39 @@ export class ThemeService {
     startWith(this.#osThemePreference),
     map(resolveTheme),
   );
-  #changeThemeSubject$ = new Subject<ThemeName>();
+  #userChangeThemeSubject$ = new Subject<ThemeName>();
 
   theme$ = merge(
     this.#osThemePreferenceChange$,
-    this.#changeThemeSubject$,
+    this.#userChangeThemeSubject$,
   ).pipe(
-    tap(loadTheme),
+    switchMap(loadTheme),
     shareReplay(),
   );
 
-  changeTheme = (theme: ThemeName) => this.#changeThemeSubject$.next(theme);
+  changeTheme(theme: ThemeName) {
+    this.#userChangeThemeSubject$.next(theme);
+  };
 }
 
 const resolveTheme = (media: MediaQueryList): ThemeName => media.matches ? "light" : "dark";
-const loadTheme = (theme: ThemeName): void => {
-  getStyleLinkElement().setAttribute("href", getThemeFileName(theme));
-};
-const getStyleLinkElement = (): HTMLLinkElement => {
+
+const loadTheme = (theme: ThemeName): Observable<ThemeName> => {
   const existLink = document.head.querySelector<HTMLLinkElement>("link#app-theme");
-  if (existLink) return existLink;
+  if (existLink) {
+    existLink.setAttribute("href", getThemeFileName(theme));
+    return of(theme);
+  }
 
   const link = document.createElement("link");
   link.setAttribute("id", "app-theme");
   link.setAttribute("rel", "stylesheet");
+  link.setAttribute("href", `${getThemeFileName(theme)}?ts=${Date.now()}`);
   document.head.querySelector("link[rel=stylesheet]:last-of-type")?.after(link);
 
-  return link;
+  return fromEvent(link, "load", {once: true}).pipe(map(() => theme));
 };
+
 const getThemeFileName = (theme: ThemeName): ThemeFileName => theme === "light"
   ? "/light-theme.css"
   : "/dark-theme.css";
