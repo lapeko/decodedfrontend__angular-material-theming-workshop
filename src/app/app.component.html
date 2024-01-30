@@ -19,7 +19,7 @@
   <section class="sort-area">
     <mat-form-field class="drop-down">
       <mat-label>Choose theme</mat-label>
-      <mat-select [value]="themeService.theme$ | async">
+      <mat-select [value]="themeService.theme$ | async" (valueChange)="changeTheme($event)">
         <mat-option value="dark">Dark</mat-option>
         <mat-option value="light">Light</mat-option>
       </mat-select>

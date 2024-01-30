@@ -1,6 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
-import {ThemeService} from "./services/theme.service";
+import {Component} from '@angular/core';
+
+import {ThemeName, ThemeService} from "./services/theme.service";
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,10 @@ import {ThemeService} from "./services/theme.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private readonly themeAnchor = this.document.getElementById("app-theme");
+  constructor(public themeService: ThemeService) {
+  }
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    public themeService: ThemeService,
-  ) {
+  changeTheme($event: ThemeName) {
+    this.themeService.changeTheme($event)
   }
 }
